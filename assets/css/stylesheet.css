@@ -1,3 +1,57 @@
-body {
+.card-image {
+    max-width: 100%;
+    height: 100%;
+}
 
+*,
+*:before,
+*:after {
+    box-sizing: border-box !important;
+}
+
+.tiledImages {
+    -moz-column-width: 13em;
+    -webkit-column-width: 13em;
+    -moz-column-gap: 1em;
+    -webkit-column-gap: 1em;
+}
+
+.tile {
+    position: relative;
+    display: inline-block;
+    margin: 0.25rem;
+    padding: 0.3rem;
+    width: 100%;
+    background: #efefef;
+    cursor: pointer;
+}
+
+.tile img {
+    width: 100%;
+}
+
+.dark-purple-toolbar {
+    background-color: #454552 !important;
+}
+
+.dark-purple-toolbar-subheader {
+    background-color: #575766 !important;
+    color: #e1e1e1;
+}
+
+.imageTitle {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 3px 6px;
+    border-radius: 3px;
+    margin-right: 5px;
+    color: #fff;
+}
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

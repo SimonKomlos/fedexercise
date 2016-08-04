@@ -1,0 +1,24 @@
+<md-dialog aria-label="Larger Image" ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 class="truncate">{{photoData.title}}{{photoData.title.length > 40 ? '&hellip;' : ''}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon aria-label="Close dialog"><i class="material-icons">close</i></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content" style="text-align: center;">
+        <img style="margin: auto; max-width: 100%;" ng-src="https://farm{{photoData.farm}}.staticflickr.com/{{photoData.server}}/{{photoData.id}}_{{photoData.secret}}.jpg">
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button ng-href="https://farm{{photoData.farm}}.staticflickr.com/{{photoData.server}}/{{photoData.id}}_{{photoData.secret}}.jpg" target="_blank">
+        Open original image
+      </md-button>
+      <span flex></span>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

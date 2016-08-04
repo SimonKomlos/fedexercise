@@ -13,15 +13,59 @@
 </head>
 
 <body ng-controller="MainCtrl as ctrl">
-
-    <md-input-container class="md-block">
-        <label>Filter by name</label>
-        <input md-maxlength="30" name="filter" ng-model="search.title">
-      </md-input-container>
-
-    <div layout="column">
-        <div flex="33" ng-repeat="photo in ctrl.imageResults | filter:search">
-            <img ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}.jpg" />
+    <md-toolbar class="dark-purple-toolbar">
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="About" ng-click="ctrl.showAbout($event)">
+                <md-tooltip md-direction="bottom">
+                    About
+                </md-tooltip>
+                <md-icon><i class="material-icons">help_outline</i></md-icon>
+            </md-button>
+            <h2>
+          <span hide-xs>NASA Goddard Space Flight Center</span>
+        </h2>
+            <span flex></span>
+            <md-button ng-click="ctrl.loadMore()" ng-disabled="ctrl.limitImages === 100" aria-label="Load more">
+                <md-tooltip md-direction="bottom">
+                    Load 20 More Images
+                </md-tooltip>
+                Load more images
+            </md-button>
+            <md-button class="md-icon-button" aria-label="Filter" ng-click="ctrl.subheaderStatus = !ctrl.subheaderStatus">
+                <md-tooltip md-direction="bottom">
+                    Toggle Filter Options
+                </md-tooltip>
+                <md-icon><i class="material-icons">search</i></md-icon>
+            </md-button>
+            <md-button class="md-icon-button" target="_blank" href="https://github.com/SimonKomlos/fedexercise" aria-label="Github">
+                <md-tooltip md-direction="bottom">
+                    View on Github
+                </md-tooltip>
+                <md-icon><i class="material-icons">code</i></md-icon>
+            </md-button>
+        </div>
+        <md-subheader ng-show="ctrl.subheaderStatus" class="dark-purple-toolbar-subheader">
+            <span class="header">FILTERING OPTIONS</span>
+            <div layout="row" md-theme="docs-dark">
+                <md-input-container flex="33" class="md-block">
+                    <label>Filter by title</label>
+                    <input name="filterTitle" ng-model="search.title">
+                </md-input-container>
+                <md-input-container flex="33" class="md-block">
+                    <label>Filter by server</label>
+                    <input name="filterTitle" ng-model="search.server">
+                </md-input-container>
+                <md-input-container flex="33" class="md-block">
+                    <label>Filter by id</label>
+                    <input name="filterTitle" ng-model="search.id">
+                </md-input-container>
+            </div>
+        </md-subheader>
+    </md-toolbar>
+    <div class="tiledImages">
+        <div class="tile" ng-click="ctrl.showLargerImage($event, photo)" ng-repeat="photo in ctrl.imageResults | limitTo:ctrl.limitImages | filter:search" ng-mouseenter="photo.showTitle = true" ng-mouseleave="photo.showTitle = false">
+            <img ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_n.jpg" />
+            <div ng-show="photo.showTitle" class="imageTitle">{{photo.title}}</div>
         </div>
     </div>
     <!-- Scripts -->
